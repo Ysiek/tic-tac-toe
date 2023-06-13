@@ -19,14 +19,13 @@ def AI_choice(AI_choice_buttons):
     try:
         ai_choice.append(int(str(random_button).replace('.!button', '')) - 1)
     except:
-        print("dziala")
         ai_choice.append(0)
 
     AI_choice_buttons.remove(random_button)
     win = check_manager.check_who_win(ai_choice)
     if win:
         if '0' in check_manager.winner:
-            print("przegrales")
+            print("You Lose")
         for but in buttons:
             but['state'] = 'disabled'
         return
@@ -42,14 +41,14 @@ def player_choice(which_button):
     win = check_manager.check_who_win(player_choices)
     if win:
         if 'X' in check_manager.winner:
-            print("wygrales")
+            print("You Win")
         for but in buttons:
             but['state'] = 'disabled'
         return
 
     AI_choice_buttons.remove(cur_button)
     if not AI_choice_buttons:
-        return print('remis')
+        return print('Draw')
     AI_choice(AI_choice_buttons)
 
 
